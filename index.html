@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
+  <header class="header fade-in">
     <nav class="nav">
       <a href="#" class="logo">Seoyoung Kim</a>
       <ul class="nav-links">
@@ -29,7 +29,7 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero fade-in">
       <div class="hero-bg-circles" aria-hidden="true">
         <span class="hero-circle hero-circle-1"></span>
         <span class="hero-circle hero-circle-2"></span>
@@ -42,7 +42,7 @@
       <div class="hero-content">
         <p class="hero-label-text">Hello, I'm</p>
         <h1 class="hero-title">Seo (Seoyoung Kim)</h1>
-        <p class="hero-subtitle">Solution Engineer · Full-Stack · AI & Data</p>
+        <p class="hero-subtitle">Researcher-Developer · Full-Stack · AI & Data</p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">View work</a>
           <a href="#contact" class="btn btn-secondary">Get in touch</a>
@@ -50,36 +50,52 @@
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="about" class="section fade-in">
       <h2 class="section-title">About</h2>
       <p class="section-text">
-        Solution Engineer at ProIT (Columbia, MD), building full-stack systems with TypeScript, React, Node.js, Next.js, and PostgreSQL.
-        I design and ship production web apps on GCP and AWS, build customer-facing AI systems (including RAG pipelines with LangChain and ChromaDB),
-        and implement batch and streaming data pipelines. I've led technical discussions on AI agents and data platforms,
-        and mentor a team of 10 engineers and interns. BS in Computer Science & Biology from Minerva University.
+        Hi! I'm Seo, a Solution Engineer at ProIT, building full-stack systems for various commercial and enterprise clients.
+       
+        During my time here, I've:
+        <br>
+        <ul>
+          <li>Owned production web apps on GCP and AWS</li>
+          <li>Built customer-facing AI systems</li>
+          <li>Architected batch and streaming data pipelines</li>
+        </ul> 
+        I really love sitting in the intersection of customer and technical support, getting to 
+        make new connections and code every day :) 
+        
+        <br>
+        <br>
+        I'm a researcher by training, and I started
+        my solution engineering journey wanting to make a difference in the research software infrasturcture. 
+        I'm looking forward to new opportunites for accelerating biological discovery and business operations with my solution engineering skills!
+      
       </p>
     </section>
 
-    <section id="projects" class="section section-projects">
+    <section id="projects" class="section section-projects fade-in">
       <video class="projects-bg-video" autoplay muted loop playsinline aria-hidden="true">
         <source src="bg_portfolio.webm" type="video/webm">
       </video>
       <div class="projects-content">
       <h2 class="section-title">Projects</h2>
+      <p class="section-text">Here are some of the projects I've worked on afterhours. Some were extensions of work and some were MVPs of new applications
+        I've gone on to own at my team! You can find the live apps, code repositories, and architectural document samples in each project highlight        :</p>
       <div class="cards">
-        <article class="card" data-tilt>
+        <article class="card fade-in" data-tilt>
           <span class="card-category">Product</span>
           <h3>Paper Discover</h3>
           <p>Explore papers by discipline, publication date, and AI-powered insights across topics and abstracts.</p>
           <a href="projects/paper-discover.html" class="card-link">View →</a>
         </article>
-        <article class="card" data-tilt>
+        <article class="card fade-in" data-tilt>
           <span class="card-category">Analyses</span>
           <h3>Immunology Analyses</h3>
           <p>Bioinformatics analyses in immunology.</p>
           <a href="projects/immunology-analyses.html" class="card-link">View →</a>
         </article>
-        <article class="card" data-tilt>
+        <article class="card fade-in" data-tilt>
           <span class="card-category">ML</span>
           <h3>RAG trained Chatbot</h3>
           <p>Retrieval-augmented generation (RAG) trained ML model for conversational AI.</p>
@@ -89,7 +105,7 @@
       </div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience" class="section fade-in">
       <h2 class="section-title">Experience</h2>
       <div class="experience-list">
         <article class="experience-item">
@@ -138,7 +154,7 @@
       </div>
     </section>
 
-    <section id="contact" class="section section-alt section-full-width">
+    <section id="contact" class="section section-alt section-full-width fade-in">
       <div class="contact-content">
         <h2 class="section-title">Contact</h2>
         <p class="section-text">Say hello or collaborate.</p>
@@ -150,7 +166,7 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer fade-in">
     <p>Seoyoung Kim · Built with custom HTML, CSS & JS · Hosted on GitHub Pages</p>
   </footer>
 

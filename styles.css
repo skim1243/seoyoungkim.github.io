@@ -22,6 +22,18 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ----- Fade-in (scroll / load) ----- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -772,6 +784,40 @@ code {
 
 .project-body.prose .prose-table tbody tr:nth-child(even) {
   background: rgba(255, 255, 254, 0.03);
+}
+
+.prose-callout {
+  margin: 0 0 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+}
+
+.prose-callout-title {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.prose-callout ol,
+.prose-callout ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.prose-callout li {
+  margin-bottom: 0.25rem;
+}
+
+.prose-callout p {
+  margin: 0.5rem 0 0;
+}
+
+.prose-callout p:first-of-type {
+  margin-top: 0;
 }
 
 /* ----- API diagram (project pages) ----- */

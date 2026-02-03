@@ -1,6 +1,25 @@
 (function () {
   'use strict';
 
+  // ----- Fade-in: reveal elements when they enter the viewport -----
+  (function fadeInOnScroll() {
+    var fadeEls = document.querySelectorAll('.fade-in');
+    if (!fadeEls.length) return;
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      { rootMargin: '0px 0px -30px 0px', threshold: 0.05 }
+    );
+    fadeEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+
   // ----- Hero content: slide in one by one on load -----
   (function heroSlideIn() {
     var hero = document.querySelector('.hero');

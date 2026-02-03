@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WI Internal Chatbot | Seoyoung Kim</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="project-page">
+  <header class="header">
+    <nav class="nav">
+      <a href="../index.html" class="logo">Seoyoung Kim</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="project-main">
+    <article class="project-article">
+      <header class="project-header">
+        <a href="../index.html#projects" class="project-back">← Back to projects</a>
+        <span class="project-category">ML</span>
+        <h1 class="project-title">WI Internal Chatbot</h1>
+        <p class="project-lead">Architectural overview of an internal-facing RAG chatbot for Website Innovator (WI).</p>
+      </header>
+
+      <figure class="project-cover">
+        <img src="../Data.gif" alt="WI Internal Chatbot" width="1200" height="630">
+      </figure>
+
+      <div class="project-body prose">
+        <h2>What This Product Is</h2>
+        <p>The <strong>WI Internal Chatbot</strong> is an internal-facing assistant MVP built for Website Innovator (WI) to help answer common questions about services, positioning, and internal knowledge quickly and consistently.</p>
+        <p>Rather than being a generic chatbot, the system is designed as:</p>
+        <ul>
+          <li>A controlled knowledge assistant</li>
+          <li>Accessible both publicly and behind authentication</li>
+          <li>Easy to evolve as internal documentation changes</li>
+        </ul>
+        <p>At a high level, this is a <strong>Next.js</strong> application that combines authentication, a <strong>retrieval-augmented generation (RAG)</strong> pipeline, and a shared chat interface into a single, cohesive product.</p>
+
+        <h2>High-Level System Overview</h2>
+        <p>Conceptually, the app has three main responsibilities:</p>
+        <ul>
+          <li>Present a clean, reusable chat interface</li>
+          <li>Safely answer questions using internal knowledge (RAG)</li>
+          <li>Gate access to protected views using authentication</li>
+        </ul>
+        <p>All three live in the same Next.js codebase so that UI, server logic, and data flow stay tightly aligned.</p>
+
+        <h2>Tech Stack (With Rationale)</h2>
+        <div class="prose-table-wrap">
+          <table class="prose-table">
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Technology</th>
+                <th>Why</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Framework</td>
+                <td>Next.js 15.3 (App Router, Turbopack)</td>
+                <td>Enables colocated UI + server logic with clear routing and API boundaries</td>
+              </tr>
+              <tr>
+                <td>UI</td>
+                <td>React 19, Tailwind CSS 4</td>
+                <td>Simple, reusable components with fast iteration</td>
+              </tr>
+              <tr>
+                <td>Auth</td>
+                <td>Firebase Auth (email/password)</td>
+                <td>Reliable, minimal setup for internal users</td>
+              </tr>
+              <tr>
+                <td>AI / RAG</td>
+                <td>LangChain + OpenAI (GPT-3.5-turbo, embeddings)</td>
+                <td>Structured retrieval over controlled documents</td>
+              </tr>
+              <tr>
+                <td>Vector Store</td>
+                <td>LangChain MemoryVectorStore (in-memory)</td>
+                <td>Lightweight, stateless setup for rapid prototyping</td>
+              </tr>
+              <tr>
+                <td>Language</td>
+                <td>TypeScript</td>
+                <td>Type safety across UI, APIs, and business logic</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>This stack favors clarity and iteration speed over premature optimization.</p>
+
+        <h2>Application Structure (How the App Is Organized)</h2>
+        <p>The project uses the Next.js App Router, which makes it easy to reason about what is public, what is protected, and what runs on the server.</p>
+        <pre><code>app/
+├── layout.tsx              Root layout (fonts, global styles)
+├── page.tsx                Public home page with chatbot
+├── login/
+│   └── page.tsx            Login / sign-up (Firebase)
+├── account-created/
+│   └── page.js             Post-signup confirmation
+├── dashboard/
+│   └── page.tsx            Protected dashboard + chatbot
+├── chatbot/
+│   └── Chatbot.tsx         Shared chat UI component
+└── api/
+    ├── rag/
+    │   └── route.ts        App Router API: POST → RAG query
+    └── chat.ts             Legacy API route (unused)</code></pre>
+
+        <h3>Routing Model</h3>
+        <ul>
+          <li><strong>Public routes:</strong> <code>/</code>, <code>/login</code>, <code>/account-created</code></li>
+          <li><strong>Protected route:</strong> <code>/dashboard</code></li>
+          <li><strong>API:</strong> <code>/api/rag</code> (the only API route used by the app)</li>
+        </ul>
+
+        <h2>How the Chatbot Actually Works</h2>
+        <h3>1. User Interaction (Client Side)</h3>
+        <p>The same <code>&lt;Chatbot /&gt;</code> component is reused on:</p>
+        <ul>
+          <li>the public home page</li>
+          <li>the authenticated dashboard</li>
+        </ul>
+        <p>From the user’s perspective, the experience is identical — which was intentional. The difference is who can access the page, not how the chatbot behaves.</p>
+
+        <h3>2. Request Flow (RAG Pipeline)</h3>
+        <p>When a user submits a message:</p>
+        <pre><code>Chatbot.tsx
+  → POST /api/rag { query }
+  → internalRAGQuery(query)
+  → return generated response
+  → UI updates with reply</code></pre>
+        <p>Behind the scenes, the RAG pipeline does the following:</p>
+        <ul>
+          <li>Takes a set of internal knowledge documents (services, FAQs, positioning)</li>
+          <li>Splits them into manageable chunks using a text splitter</li>
+          <li>Embeds those chunks with OpenAI embeddings</li>
+          <li>Builds an in-memory vector store</li>
+          <li>Retrieves the most relevant context for the user’s question</li>
+          <li>Generates a response using GPT-3.5-turbo grounded in that context</li>
+        </ul>
+        <p>This keeps responses:</p>
+        <ul>
+          <li>Relevant to WI’s actual content</li>
+          <li>Less likely to hallucinate</li>
+          <li>Easy to update by changing source documents</li>
+        </ul>
+
+        <h3>3. Knowledge Base Design</h3>
+        <ul>
+          <li><strong>Knowledge source:</strong> Hardcoded internal documents (for now)</li>
+          <li><strong>Vector store:</strong> Rebuilt per request in memory</li>
+          <li><strong>Persistence:</strong> None (by design at this stage)</li>
+        </ul>
+        <p>This approach is intentionally simple: it avoids state and sync complexity, it’s easy to reason about, and it’s ideal for early prototyping and demos. For production, this could be upgraded to a persistent vector store (e.g. ChromaDB), which is already included in the project dependencies.</p>
+
+        <h2>Authentication Flow</h2>
+        <p>Authentication is handled via Firebase Auth and used strictly for route protection, not personalization.</p>
+        <h3>Flow Overview</h3>
+        <ul>
+          <li><strong><code>/login</code></strong> — Sign in: <code>signInWithEmailAndPassword</code> → <code>/dashboard</code>. Create account: <code>createUserWithEmailAndPassword</code> → <code>/account-created</code></li>
+          <li><strong><code>/dashboard</code></strong> — Listens to <code>onAuthStateChanged</code>. Redirects to <code>/login</code> if no user is present. Renders the same chatbot component as the public page.</li>
+        </ul>
+        <p>The result is a clear separation: auth controls access; chatbot logic stays unchanged.</p>
+
+        <h2>Key Components and Their Roles</h2>
+        <div class="prose-table-wrap">
+          <table class="prose-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Responsibility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Chatbot.tsx</code></td>
+                <td>Client UI: messages, input, loading states</td>
+              </tr>
+              <tr>
+                <td><code>lib/rag.ts</code></td>
+                <td>RAG pipeline: chunk → embed → retrieve → generate</td>
+              </tr>
+              <tr>
+                <td><code>app/api/rag/route.ts</code></td>
+                <td>Server handler: validates request, returns reply</td>
+              </tr>
+              <tr>
+                <td><code>lib/firebase-config.ts</code></td>
+                <td>Firebase app + auth initialization</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>There is also a legacy <code>/api/chat</code> route using the Pages API style, which is no longer used by the app and would be removed or refactored in a cleanup pass.</p>
+
+        <h2>Design Decisions Worth Calling Out</h2>
+        <ul>
+          <li><strong>Single chatbot, multiple contexts</strong> — The same chatbot UI is reused everywhere, reinforcing that access control should not affect behavior.</li>
+          <li><strong>Stateless RAG pipeline</strong> — Rebuilding the vector store per request simplifies debugging and avoids hidden state during early development.</li>
+          <li><strong>Conservative AI use</strong> — The system retrieves from known documents first and uses the model only to synthesize responses, not invent new facts.</li>
+        </ul>
+
+        <h2>What This Architecture Optimizes For</h2>
+        <ul>
+          <li>Clarity over cleverness</li>
+          <li>Fast iteration and experimentation</li>
+          <li>Easy future upgrades (persistent vector store, richer auth, logging)</li>
+        </ul>
+        <p>This makes the system well-suited for internal tools where correctness, transparency, and maintainability matter more than raw scale.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>Seoyoung Kim · Built with HTML, CSS & JS · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

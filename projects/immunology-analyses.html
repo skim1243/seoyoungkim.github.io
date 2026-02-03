@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Immunology Analyses | Seoyoung Kim</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="project-page">
+  <header class="header">
+    <nav class="nav">
+      <a href="../index.html" class="logo">Seoyoung Kim</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="project-main project-main-with-toc">
+    <aside class="project-toc" aria-label="Table of contents">
+      <span class="project-toc-title">On this page</span>
+      <nav class="project-toc-nav">
+        <ul>
+          <li><a href="#cic-atxn1l">CIC-ATXN1L Complex</a></li>
+          <li><a href="#antigen-processing">Antigen Processing &amp; Presentation</a></li>
+          <li><a href="#dendritic-cell">Early Dendritic Cell Maturation</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <article class="project-article">
+      <header class="project-header">
+        <a href="../index.html#projects" class="project-back">← Back to projects</a>
+        <span class="project-category">Analyses</span>
+        <h1 class="project-title">Immunology Analyses</h1>
+        <p class="project-lead">Exploring immunology and the complexity of cancer regulation through analyses of public datasets.</p>
+      </header>
+
+      <figure class="project-cover">
+        <img src="../Data.png" alt="Immunology analyses data" width="1200" height="630">
+      </figure>
+
+      <div class="project-body prose">
+        <h2 id="cic-atxn1l">CIC-ATXN1L Complex in IFN and ISG Regulation</h2>
+        <p>This analysis explores the role of the <strong>CIC-ATXN1L complex</strong> as a transcriptional repressor in the regulation of interferon (IFN) and interferon-stimulated genes (ISGs). Under homeostatic conditions, CIC-ATXN1L binds to an 8-nucleotide motif near IFN and ISG promoters, preventing their aberrant activation. During respiratory viral infections, this repression is lifted due to the degradation of CIC-ATXN1L, mediated by activation of the Mitogen-activated protein kinase (MAPK) pathway. This mechanism primes host cells for robust antiviral responses through interferon regulatory factors (IRFs) and signal transducer and activator of transcription (STAT) transcription factors.</p>
+
+        <h3>Data Description</h3>
+        <p>The dataset includes gene expression profiles under homeostasis and viral infection conditions:</p>
+        <ul>
+          <li><strong>RNA sequencing (RNA-seq)</strong> data capturing transcriptional changes following CIC-ATXN1L depletion</li>
+          <li><strong>Experimental validation</strong> including knockout (KO) and overexpression models in human and murine cell lines</li>
+        </ul>
+
+        <h3>Data Source</h3>
+        <p><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE271898" target="_blank" rel="noopener">GEO accession GSE271898</a></p>
+
+        <h3>Key Findings</h3>
+        <ul>
+          <li><strong>CIC-ATXN1L as a repressor:</strong> Binds directly to IFN and ISG promoters, suppressing their activation in the absence of infection.</li>
+          <li><strong>MAPK pathway activation:</strong> Viral infection induces MAPK signaling, leading to CIC-ATXN1L degradation and relief of repression.</li>
+          <li><strong>Conserved mechanism:</strong> Similar regulatory patterns in murine models suggest evolutionary conservation.</li>
+          <li><strong>Functional consequences:</strong> Loss of CIC-ATXN1L results in spontaneous IFN and ISG expression, potentially leading to auto-inflammatory responses.</li>
+        </ul>
+
+        <h3>Methods</h3>
+        <ul>
+          <li><strong>RNA-seq analysis:</strong> Differential gene expression between control and CIC-ATXN1L-deficient conditions.</li>
+          <li><strong>Functional assays:</strong> Antiviral response strength and impacted pathways following CIC-ATXN1L depletion.</li>
+        </ul>
+
+        <section class="project-section">
+          <h2>Analysis Notebook</h2>
+          <p>Full analysis, code, and visualizations are available in the Jupyter notebook below.</p>
+          <a href="https://github.com/skim1243/CIC-ATAXNL1_Complex_for_anti-viral_response/blob/main/MI_Assignment_2.ipynb" target="_blank" rel="noopener" class="btn btn-primary">View analysis on GitHub →</a>
+        </section>
+
+        <h2 id="antigen-processing">Antigen Processing &amp; Presentation Pathway — Cross-Tissue Tumor Differential Gene Expression</h2>
+        <p>This project uses bioinformatic analysis of gene expression data from <strong>multiple solid tumor tissues</strong> to explore whether observed heterogeneity arises from tumor-intrinsic mutations or from immune modulation within the <strong>tumor microenvironment (TME)</strong>. The work centers on the antigen processing and presentation pathway and its differential expression across normal and tumor samples.</p>
+        <p>It includes mass data cleaning and mining pipelines (e.g. <em>Capstone_Data_Cleaning.ipynb</em>, <em>Capstone_Data_Mining.ipynb</em>) and uses Normal vs. Tumor tissue comparisons to characterize pathway-level and gene-level differences.</p>
+        <section class="project-section">
+          <a href="https://github.com/skim1243/antigen-processing-and-presentation-pathway-cross-tissue-tumor-differential-gene-expression-analysis" target="_blank" rel="noopener" class="btn btn-primary">View project on GitHub →</a>
+        </section>
+
+        <h2 id="dendritic-cell">Early Dendritic Cell Maturation</h2>
+        <figure class="project-cover">
+          <img src="../dendritic.png" alt="Dendritic cell analysis: heatmap and PCA of gene expression data" width="1200" height="630">
+        </figure>
+        <p>This project studies <strong>early-stage dendritic cell maturation</strong> using transcriptomic data. The dataset consists of RNA sequencing data from early-stage dendritic cells at different maturation states. The primary goal is to understand transcriptional changes during maturation and identify key regulatory pathways.</p>
+
+        <h3>Data Source</h3>
+        <p><a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE288378" target="_blank" rel="noopener">GEO accession GSE288378</a></p>
+
+        <h3>Methods</h3>
+        <ul>
+          <li>Preprocess raw RNA-seq count data into log-transformed expression values.</li>
+          <li>Run individual scripts for <strong>boxplot</strong>, <strong>heatmap</strong>, <strong>PCA</strong>, and <strong>GSEA</strong>.</li>
+          <li>Interpret visual outputs to identify key genes and pathways involved in dendritic cell maturation.</li>
+        </ul>
+
+        <h3>Results &amp; Interpretation</h3>
+        <ul>
+          <li><strong>Boxplots</strong> highlight differentially expressed genes.</li>
+          <li><strong>Heatmaps</strong> cluster genes and samples based on expression similarity.</li>
+          <li><strong>PCA plots</strong> reveal major sources of variance in gene expression.</li>
+          <li><strong>GSEA</strong> identifies enriched pathways regulating early dendritic cell maturation.</li>
+        </ul>
+
+        <section class="project-section">
+          <a href="https://github.com/skim1243/early_dendritic_cell_maturation" target="_blank" rel="noopener" class="btn btn-primary">View project on GitHub →</a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>Seoyoung Kim · Built with HTML, CSS & JS · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

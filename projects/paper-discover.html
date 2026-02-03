@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paper Discover | Seoyoung Kim</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="project-page">
+  <header class="header">
+    <nav class="nav">
+      <a href="../index.html" class="logo">Seoyoung Kim</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="project-main">
+    <article class="project-article">
+      <header class="project-header">
+        <a href="../index.html#projects" class="project-back">← Back to projects</a>
+        <span class="project-category">Product</span>
+        <h1 class="project-title">Paper Discover</h1>
+        <p class="project-lead">Explore papers by discipline, publication date, and AI-powered insights across topics and abstracts.</p>
+        <a href="https://paperdiscover.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">View live app →</a>
+      </header>
+
+      <figure class="project-cover">
+        <img src="../paper-discover.png" alt="Paper Discover app screenshot" width="1200" height="630">
+      </figure>
+
+      <div class="project-body prose">
+        <h2>What Paper Discover Does</h2>
+        <p>Paper Discover is a lightweight research exploration tool that helps users understand what’s being published, where, and how fields are evolving — without needing to manually sift through thousands of papers.</p>
+        <p>Instead of keyword-only search, the app lets users:</p>
+        <ul>
+          <li>Browse papers by discipline</li>
+          <li>See publication trends over time</li>
+          <li>Get high-level summaries and insights across abstracts and topics</li>
+        </ul>
+        <p>The goal is not to replace deep reading, but to make the discovery phase faster and more intuitive.</p>
+
+        <h2>How the Product Works (Conceptually)</h2>
+        <p>At a high level, Paper Discover has three main layers:</p>
+        <ul>
+          <li>A simple, responsive interface for exploring papers</li>
+          <li>A backend that normalizes and serves publication data</li>
+          <li>Optional AI-powered insights to summarize trends across many papers</li>
+        </ul>
+        <p>Each part is intentionally kept modular so the system is easy to extend and reason about.</p>
+
+        <h2>Data Ingestion &amp; Curation</h2>
+        <p>Paper data is sourced from the Springer Open Access API and periodically synced into the app’s database.</p>
+        <p>Rather than querying external APIs directly from the browser, all data is:</p>
+        <ul>
+          <li>Fetched server-side</li>
+          <li>Cleaned and normalized</li>
+          <li>Stored in a structured database</li>
+        </ul>
+        <p>This allows the app to:</p>
+        <ul>
+          <li>Respond quickly to user queries</li>
+          <li>Support aggregation (e.g. counts by date or discipline)</li>
+          <li>Avoid rate limits and inconsistent upstream responses</li>
+        </ul>
+        <p>An admin-only sync endpoint handles ingestion, making it easy to refresh or expand the dataset without impacting users.</p>
+
+        <h2>Exploring Papers in the App</h2>
+        <p>Once data is ingested, users can explore it in a few ways:</p>
+
+        <h3>Browsing by Discipline</h3>
+        <p>Each paper can belong to multiple disciplines. These are stored as structured metadata rather than free text, which makes it possible to:</p>
+        <ul>
+          <li>Filter reliably</li>
+          <li>Rank popular disciplines</li>
+          <li>Compare fields side by side</li>
+        </ul>
+
+        <h3>Viewing Publication Trends</h3>
+        <p>To help users see how research evolves over time, the app aggregates papers by publication date and surfaces this data visually. This makes it easy to answer questions like:</p>
+        <ul>
+          <li>“Is this field growing quickly?”</li>
+          <li>“When did interest peak?”</li>
+        </ul>
+
+        <h3>Reading Abstracts in Context</h3>
+        <p>Instead of isolating each paper, the interface encourages scanning across abstracts to get a sense of common themes before diving deeper.</p>
+
+        <h2>AI-Powered Insights (Optional by Design)</h2>
+        <p>Paper Discover includes an optional AI insights feature that summarizes patterns across multiple abstracts.</p>
+        <p>This is intentionally:</p>
+        <ul>
+          <li>Not a replacement for reading</li>
+          <li>Not positioned as authoritative</li>
+          <li>Clearly labeled as a synthesis tool</li>
+        </ul>
+        <p>The goal is to help users orient themselves quickly — especially when entering an unfamiliar field.</p>
+        <p>I designed this feature conservatively, focusing on:</p>
+        <ul>
+          <li>Aggregation rather than interpretation</li>
+          <li>Transparency over confidence</li>
+          <li>Human judgment remaining central</li>
+        </ul>
+
+        <h2>Why I Designed It This Way</h2>
+        <p>A few guiding principles shaped the product:</p>
+        <ul>
+          <li><strong>Clarity over cleverness</strong> — The system favors explicit data flows and readable interfaces over hidden magic.</li>
+          <li><strong>Server-side control of data</strong> — All reads and writes go through the backend, which keeps security, validation, and evolution manageable.</li>
+          <li><strong>Extensibility</strong> — New data sources, filters, or insight layers can be added without rewriting the core system.</li>
+          <li><strong>Respect for the research process</strong> — The tool accelerates discovery but doesn’t pretend to replace expertise.</li>
+        </ul>
+
+        <h2>Technical Notes (For Those Who Want Them)</h2>
+        <p>For readers interested in implementation details:</p>
+        <ul>
+          <li>The frontend is built with React and Next.js</li>
+          <li>Data is stored in PostgreSQL (via Supabase)</li>
+          <li>All data access goes through API routes, rather than directly from the browser</li>
+          <li>Aggregations and summaries are handled server-side for consistency and performance</li>
+        </ul>
+        <p>These choices reflect a preference for maintainable, production-oriented systems over quick demos.</p>
+
+        <h2>What I’d Explore Next</h2>
+        <p>If this were taken further, I’d be interested in:</p>
+        <ul>
+          <li>Supporting multiple publication sources</li>
+          <li>Adding saved views for specific research interests</li>
+          <li>Personalized recommendations for authenticated users based on their research interests</li>
+          <li>Surfacing changes over time within individual disciplines</li>
+          <li>Improving evaluation and transparency around AI-generated insights</li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>Seoyoung Kim · Built with HTML, CSS & JS · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

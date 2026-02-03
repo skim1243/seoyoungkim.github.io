@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome | GitHub Pages</title>
+  <title>Seoyoung Kim | Solution Engineer</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +12,13 @@
 <body>
   <header class="header">
     <nav class="nav">
-      <a href="#" class="logo">GitHub Pages</a>
+      <a href="#" class="logo">Seoyoung Kim</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="resume.pdf" target="_blank" rel="noopener">Resume</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span>
@@ -28,19 +30,22 @@
 
   <main>
     <section class="hero">
+      <div class="hero-bg-circles" aria-hidden="true">
+        <span class="hero-circle hero-circle-1"></span>
+        <span class="hero-circle hero-circle-2"></span>
+        <span class="hero-circle hero-circle-3"></span>
+        <span class="hero-circle hero-circle-4"></span>
+        <span class="hero-circle hero-circle-5"></span>
+        <span class="hero-circle hero-circle-6"></span>
+        <span class="hero-circle hero-circle-7"></span>
+      </div>
       <div class="hero-content">
-        <p class="hero-label">Hello, I'm</p>
-        <h1 class="hero-title">Your Name</h1>
-        <p class="hero-subtitle">Developer · Creator · Builder</p>
+        <p class="hero-label-text">Hello, I'm</p>
+        <h1 class="hero-title">Seo (Seoyoung Kim)</h1>
+        <p class="hero-subtitle">Solution Engineer · Full-Stack · AI & Data</p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">View work</a>
           <a href="#contact" class="btn btn-secondary">Get in touch</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="code-block">
-          <span class="code-line"><span class="code-keyword">const</span> build = <span class="code-string">'something cool'</span>;</span>
-          <span class="code-line"><span class="code-keyword">export</span> <span class="code-keyword">default</span> build;</span>
         </div>
       </div>
     </section>
@@ -48,18 +53,24 @@
     <section id="about" class="section">
       <h2 class="section-title">About</h2>
       <p class="section-text">
-        This is a simple, responsive site built with HTML, CSS, and JavaScript—hosted on GitHub Pages.
-        Edit <code>index.html</code>, <code>styles.css</code>, and <code>script.js</code> to make it yours.
+        Solution Engineer at ProIT (Columbia, MD), building full-stack systems with TypeScript, React, Node.js, Next.js, and PostgreSQL.
+        I design and ship production web apps on GCP and AWS, build customer-facing AI systems (including RAG pipelines with LangChain and ChromaDB),
+        and implement batch and streaming data pipelines. I've led technical discussions on AI agents and data platforms,
+        and mentor a team of 10 engineers and interns. BS in Computer Science & Biology from Minerva University.
       </p>
     </section>
 
-    <section id="projects" class="section section-alt">
+    <section id="projects" class="section section-projects">
+      <video class="projects-bg-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="bg_portfolio.webm" type="video/webm">
+      </video>
+      <div class="projects-content">
       <h2 class="section-title">Projects</h2>
       <div class="cards">
         <article class="card" data-tilt>
-          <h3>Project One</h3>
-          <p>Short description of your first project or link.</p>
-          <a href="#" class="card-link">View →</a>
+          <h3>Paper Discover</h3>
+          <p>Explore papers by discipline, publication date, and AI-powered insights across topics and abstracts.</p>
+          <a href="https://paperdiscover.vercel.app/" target="_blank" rel="noopener" class="card-link">View →</a>
         </article>
         <article class="card" data-tilt>
           <h3>Project Two</h3>
@@ -72,21 +83,72 @@
           <a href="#" class="card-link">View →</a>
         </article>
       </div>
+      </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+      <div class="experience-list">
+        <article class="experience-item">
+          <div class="experience-header">
+            <h3>Solution Engineer</h3>
+            <span class="experience-company">ProIT</span>
+            <span class="experience-meta">Columbia, MD · Jan 2020 – Present</span>
+          </div>
+          <ul class="experience-bullets">
+            <li>Designed and built extensible full-stack systems (TypeScript, React, Node.js, Next.js, PostgreSQL) and custom PHP/WordPress features.</li>
+            <li>Led end-to-end development of production web apps on GCP and AWS; built customer-facing AI systems (Python, Flask, RAG with LangChain, ChromaDB).</li>
+            <li>Shipped backend services and APIs including payment systems; implemented batch and streaming data pipelines (Python, SQL, GCP, AWS).</li>
+            <li>Built AI-driven pipelines that reduced government procurement bid-identification cycles by 4 hours per workflow.</li>
+            <li>Mentored and managed 10 engineers and interns; authored PRDs and led workshops on AI agents and data platforms.</li>
+          </ul>
+        </article>
+        <article class="experience-item">
+          <div class="experience-header">
+            <h3>Bioinformatics / ML Intern</h3>
+            <span class="experience-company">Wave Life Sciences</span>
+            <span class="experience-meta">Cambridge, MA · Aug 2024 – Dec 2024</span>
+          </div>
+          <ul class="experience-bullets">
+            <li>Reduced analysis downtime by 9 hours by automating raw data processing (Bowtie index refreshes) with cron jobs.</li>
+            <li>Owned ELT pipelines for public lab data (siRNA duplex) into denormalized MySQL tables.</li>
+            <li>Designed and fine-tuned ML models (XGBoost, CNN), achieving Pearson correlation of 0.72.</li>
+          </ul>
+        </article>
+        <article class="experience-item">
+          <div class="experience-header">
+            <h3>Oncology Data Science Intern</h3>
+            <span class="experience-company">Novartis</span>
+            <span class="experience-meta">Cambridge, MA · May 2024 – Aug 2024</span>
+          </div>
+          <ul class="experience-bullets">
+            <li>Processed genomic records from heterogeneous datasets for analytical readiness in R.</li>
+            <li>Analyzed cross-tissue gene expression with labeled heatmaps, annotated boxplots, and OpenTargets criteria.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="skills-block">
+        <h3 class="skills-title">Skills</h3>
+        <p class="skills-text"><strong>Programming:</strong> Python (Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, PySpark), JavaScript (Node.js, Next.js), PostgreSQL / MySQL / SparkSQL, Bash</p>
+        <p class="skills-text"><strong>Cloud & infra:</strong> AWS, Firebase, GCP, Docker, Kubernetes, Linux crontab</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
       <h2 class="section-title">Contact</h2>
       <p class="section-text">Say hello or collaborate.</p>
       <div class="contact-links">
-        <a href="https://github.com" target="_blank" rel="noopener" class="contact-link">GitHub</a>
-        <a href="https://twitter.com" target="_blank" rel="noopener" class="contact-link">Twitter</a>
-        <a href="mailto:you@example.com" class="contact-link">Email</a>
+        <a href="mailto:seoyoungk118@gmail.com" class="contact-link">Email</a>
+        <a href="tel:+14109342095" class="contact-link">+1 410-934-2095</a>
+        <a href="https://linkedin.com/in/seoyoungkim" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+        <a href="https://github.com/seoyoungkim" target="_blank" rel="noopener" class="contact-link">GitHub</a>
+        <a href="resume.pdf" target="_blank" rel="noopener" class="contact-link">Resume (PDF)</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Built with HTML, CSS & JS · Hosted on GitHub Pages</p>
+    <p>Seoyoung Kim · Built with HTML, CSS & JS · Hosted on GitHub Pages</p>
   </footer>
 
   <script src="script.js"></script>
